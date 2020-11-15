@@ -6,6 +6,10 @@ import App from './App.vue';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import VueSplide from '@splidejs/vue-splide';
+import '@splidejs/splide/dist/css/themes/splide-default.min.css';
+
+Vue.use( VueSplide );
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {  
@@ -43,3 +47,4 @@ new Vue({
   router: Router,
   render: h => h(App),
 }).$mount('#app')
+

@@ -3,7 +3,7 @@
         <div v-for="item in items" :key="item.id">
             <div class="card main" style="width: 18rem;" >
                 <div class="card-body cbody ">
-                    <i class="fas fa-university"></i>
+                     <font-awesome-icon :icon="['fas',item.img]"/>
                     <h5 class="card-title">{{ item.title }}</h5>
                     <p class="card-text">{{ item.text }}</p>
                 </div>
@@ -55,9 +55,10 @@
                 text-align: center;
                 padding: 0 25px;
 
-                i {
+                svg {
                     color: #ff8e49;
                     font-size: 33px;
+                    margin:0 auto;
                     margin-bottom: 27px;
                 }
 
