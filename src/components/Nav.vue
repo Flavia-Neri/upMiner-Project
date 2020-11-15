@@ -47,52 +47,60 @@
 <script></script>
 
 <style lang="scss">
-    #menu{
-  background: #fff;
-  ul{
-    width:97%;
-    max-width: 1325px;
-    height:84px;
-    margin:0 auto;
-    text-align:center;
-    li{
-      border-right:1px solid #ececec;
-      background: #f9f9f9;
-      width: 100%;
-      border: 1px solid #ececec;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      transition:0.3s all;
-      &:hover{
-       border-radius:5px;
-       background-color:#f26f14;
-       border:none;
-       box-shadow: 0px 0px 8.6px 1.4px rgba(168, 162, 153, 0.69);
-        svg{
-          *{
-           fill :#fff;
+    #menu {
+      background: #fff;
+
+      ul {
+        width: 97%;
+        max-width: 1325px;
+        height: 84px;
+        margin: 0 auto;
+        text-align: center;
+
+        li {
+          border-right: 1px solid #ececec;
+          background: #f9f9f9;
+          width: 100%;
+          border: 1px solid #ececec;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          transition: 0.3s all;
+
+          &:hover {
+            border-radius: 5px;
+            background-color: #f26f14;
+            border-color: #f26f14;
+            box-shadow: 0px 0px 8.6px 1.4px rgba(168, 162, 153, 0.69);
+
+            svg {
+              * {
+                fill: #fff;
+              }
+            }
+
+            a {
+              color: #fff;
+            }
+          }
+
+          svg {
+            width: 23px;
+            height: 23px;
+            margin-bottom: 5px;
+
+            * {
+              fill: #696969;
+            }
+          }
+
+          a {
+            font-size: 14px;
+            color: #696969;
+            line-height: 1;
           }
         }
-        a{
-          color:#fff;
-        }
       }
-      svg{
-        width:23px;
-        height:23px;
-        margin-bottom:5px;
-        *{
-         fill: #696969;
-        }
-      }
-      a{
-        font-size:14px;
-        color:#696969;
-        line-height: 1;
-      } 
     }
-  }
-}
 </style>
