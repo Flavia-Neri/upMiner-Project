@@ -39,7 +39,7 @@
                 <div class="infosBanner-text">
                     <span>R$</span>40,00
                 </div>
-                <router-link class="btn btn-primary btn-lg botao" to="/" role="button">Habilitar</router-link>
+                <router-link class="btn btn-primary btn-lg botao" to="/knowmore" role="button">Habilitar</router-link>
             </div>
         </section>
     </main>
