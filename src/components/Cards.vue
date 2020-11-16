@@ -1,17 +1,24 @@
 <template>
     <div class="cards">
         <div v-for="item in items" :key="item.id">
-            <div class="card main" style="width: 18rem;" >
+            <div class="card main" style="width: 18rem;">
                 <div class="card-body cbody ">
-                     <font-awesome-icon :icon="['fas',item.img]"/>
+                    <font-awesome-icon :icon="['fas',item.img]" />
                     <h5 class="card-title">{{ item.title }}</h5>
                     <p class="card-text">{{ item.text }}</p>
                 </div>
-                <a href="#" class="btn btn-primary botao-card">
+                <a href="#" v-b-modal.modal-describe v-on:click="describe(item.id)" class="btn btn-primary botao-card">
                     <span>R$ {{ item.value }}</span>
                     <b>Saiba mais</b>
                 </a>
             </div>
+        </div>
+        <div>
+            <b-modal id="modal-describe" :title="tituloModal">
+                <font-awesome-icon :icon="['fas', iconeModal]" />
+                <p class="my-4">{{ textoModal }}</p>
+                <h1> {{new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(valorModal)}}</h1>
+            </b-modal>
         </div>
     </div>
 </template>
@@ -21,9 +28,25 @@
 
     export default {
         name: 'Cards',
+    
         data(){
             return {
                 items: Items,
+                tituloModal: '',
+                textoModal: '',
+                iconeModal: '',
+                valorModal: ''
+            }
+        },
+
+        methods: {
+            describe(id){
+                const produto = Items.find(item=> item.id === id)
+
+                this.tituloModal = produto.title;
+                this.textoModal = produto.text;
+                this.iconeModal = produto.img;
+                this.valorModal = produto.value;
             }
         }
     }
@@ -112,6 +135,21 @@
         >div:nth-of-type(4n){
             .card.main {
                 margin-right: 0;
+            }
+        }
+    }
+    #modal-describe{
+        background: red;
+        .modal-footer{
+            .btn-secondary{
+                background-color:#000;
+                opacity:0.5;
+                border-color:#000;
+                color:#f0690a;
+            }
+            button.btn-primary{
+                background-color:#f0690a !important;
+                border-color:#f0690a !important;
             }
         }
     }

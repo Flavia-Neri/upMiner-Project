@@ -35,6 +35,7 @@
     import Nav from "@/components/Nav.vue";
     import Select from "@/components/Select.vue";
     import Cards from "@/components/Cards.vue";
+    
 
     Vue.use(VueRouter);
     export default{
