@@ -2,10 +2,12 @@
     <div class="containerSelect">
         <div class="selectDiv">
             <b>ORDENAR</b>
-            <select>
-                <option>Lançamento</option>
-                <option>Popularidade</option>
-                <option>Criação</option>
+            <select v-on:change="sort">
+                <option value="0" disabled selected>Selecione</option>
+                <option value="title">Nome</option>
+                <option value="id">ID</option>
+                <option value="createdDate">Lançamento</option>
+                <option value="popularity">Popularidade</option>
             </select>
         </div>
     </div>
@@ -48,3 +50,19 @@
         }
     }
 </style>
+
+<script>
+    export default {
+        props: {
+            setSort: {
+                type: Function,
+                default: e=>e
+            }
+        },
+        methods: {
+            sort(event){
+                this.setSort(event.target.value);
+            }
+        }
+    }
+</script>

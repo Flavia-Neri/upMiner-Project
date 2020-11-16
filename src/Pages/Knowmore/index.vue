@@ -39,7 +39,7 @@
                 <div class="infosBanner-text">
                     <span>R$</span>40,00
                 </div>
-                <router-link class="btn btn-primary btn-lg botao" to="/" role="button">Habilitar</router-link>
+                <router-link class="btn btn-primary btn-lg botao" to="/knowmore" role="button">Habilitar</router-link>
             </div>
         </section>
     </main>
@@ -47,95 +47,101 @@
 
 
 <style lang="scss">
-.pagekm {
-    .describe {
-        width: 1032px;
-        display: flex;
-        flex-direction: column;
-        margin:0 auto;
-        margin-top:40px;
-        .text-info-km {
-            p {
-                font-size: 16px;
-                font-weight: 300;
-                color: #696969;
+    .pagekm {
+        .describe {
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            margin:0 auto;
+            margin-top:40px;
+            .text-info-km {
+                p {
+                    font-size: 16px;
+                    font-weight: 300;
+                    color: #696969;
+                }
+            }
+            .infosBanner {
+                display: flex;
+                align-items: center;
+
+                .infosBanner-text {
+                    font-size: 38px;
+
+                    span {
+                        font-size: 16px;
+                        font-weight: 400;
+                        margin-right: 3px;
+                    }
+                }
+
+                .botao {
+                    width: 130px;
+                    height: 40px;
+                    border: none;
+                    border-radius: 5px;
+                    background-image: linear-gradient(51deg, #ff8e49, #f0690a, #ff8e49);
+                    background-size: 200% 100%;
+                    transition: 0.3s all;
+                    font-size: 16px;
+                    font-weight: bold;
+                    line-height: 1;
+                    margin-left: 35px;
+
+                    &:hover {
+                        background-position: 100%;
+                    }
+
+                    &:active,
+                    &:focus {
+                        box-shadow: none !important;
+                    }
+                }
+            }.infosBanner {
+                display: flex;
+                align-items: center;
+
+                .infosBanner-text {
+                    font-size: 38px;
+
+                    span {
+                        font-size: 16px;
+                        font-weight: 400;
+                        margin-right: 3px;
+                    }
+                }
+
+                .botao {
+                    width: 112px;
+                    height: 34px;
+                    border: none;
+                    border-radius: 5px;
+                    background-image: linear-gradient(51deg, #ff8e49, #f0690a, #ff8e49);
+                    background-size: 200% 100%;
+                    transition: 0.3s all;
+                    font-size: 16px;
+                    font-weight: bold;
+                    line-height: 1;
+                    margin-left: 20px;
+
+                    &:hover {
+                        background-position: 100%;
+                    }
+
+                    &:active,
+                    &:focus {
+                        box-shadow: none !important;
+                    }
+                }
             }
         }
-        .infosBanner {
-            display: flex;
-            align-items: center;
 
-            .infosBanner-text {
-                font-size: 38px;
-
-                span {
-                    font-size: 16px;
-                    font-weight: 400;
-                    margin-right: 3px;
-                }
-            }
-
-            .botao {
-                width: 130px;
-                height: 40px;
-                border: none;
-                border-radius: 5px;
-                background-image: linear-gradient(51deg, #ff8e49, #f0690a, #ff8e49);
-                background-size: 200% 100%;
-                transition: 0.3s all;
-                font-size: 16px;
-                font-weight: bold;
-                line-height: 1;
-                margin-left: 35px;
-
-                &:hover {
-                    background-position: 100%;
-                }
-
-                &:active,
-                &:focus {
-                    box-shadow: none !important;
-                }
-            }
-        }.infosBanner {
-            display: flex;
-            align-items: center;
-
-            .infosBanner-text {
-                font-size: 38px;
-
-                span {
-                    font-size: 16px;
-                    font-weight: 400;
-                    margin-right: 3px;
-                }
-            }
-
-            .botao {
-                width: 112px;
-                height: 34px;
-                border: none;
-                border-radius: 5px;
-                background-image: linear-gradient(51deg, #ff8e49, #f0690a, #ff8e49);
-                background-size: 200% 100%;
-                transition: 0.3s all;
-                font-size: 16px;
-                font-weight: bold;
-                line-height: 1;
-                margin-left: 20px;
-
-                &:hover {
-                    background-position: 100%;
-                }
-
-                &:active,
-                &:focus {
-                    box-shadow: none !important;
-                }
+        @media screen and(min-width: 768px){
+            .describe{
+                width: 1032px;
             }
         }
     }
-}
 </style>
 
 <script>
@@ -150,8 +156,8 @@
     export default{
         name: 'Knowmore',
         components:{
-         Slideshow,
-         BackKm
+            Slideshow,
+            BackKm
         }
    }     
 </script>

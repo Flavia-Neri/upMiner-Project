@@ -22,8 +22,8 @@
             </div>
         </div>
         <Nav v-bind:setFilter="setFilter"/>
-        <Select />
-        <Cards v-bind:filter="filter"/>
+        <Select v-bind:setSort="setSort" />
+        <Cards v-bind:filter="filter" v-bind:sort="sort" />
     </main>
 </template>
 
@@ -35,6 +35,7 @@
     import Nav from "@/components/Nav.vue";
     import Select from "@/components/Select.vue";
     import Cards from "@/components/Cards.vue";
+    
 
     Vue.use(VueRouter);
     export default{
@@ -46,12 +47,16 @@
         },
         data(){
             return {
-                filter: ''
+                filter: '',
+                sort: ''
             }
         },
         methods:{
             setFilter(value){
                 this.filter = value;
+            },
+            setSort(value){
+                this.sort = value;
             }
         }
    }     

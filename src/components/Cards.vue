@@ -1,17 +1,36 @@
 <template>
     <div class="cards">
-        <div v-for="item in filteredList" :key="item.id">
+        <div v-for="item in showList" :key="item.id">
             <div class="card main" style="width: 18rem;" >
                 <div class="card-body cbody ">
-                     <font-awesome-icon :icon="['fas',item.img]"/>
+                    <font-awesome-icon :icon="['fas',item.img]" />
                     <h5 class="card-title">{{ item.title }}</h5>
                     <p class="card-text">{{ item.text }}</p>
                 </div>
-                <a href="#" class="btn btn-primary botao-card">
+                <a href="#" v-b-modal.modal-describe v-on:click="describe(item.id)" class="btn btn-primary botao-card">
                     <span>R$ {{ item.value }}</span>
                     <b>Saiba mais</b>
                 </a>
             </div>
+        </div>
+        <div>
+            <b-modal id="modal-describe" centered header-class="headerModal">
+                <template #modal-header="{}" >
+                    <div>
+                        <font-awesome-icon :icon="['fas', iconeModal]" />
+                        <strong>{{ tituloModal }}</strong>
+                    </div>
+                </template>
+
+                <p><b>Descrição: </b>{{ textoModal }}</p>
+                <p><b>Valor: </b>{{ new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(valorModal) }}</p>
+                <p><b>Populariedade: </b>{{ populariedadeModal }}</p>
+                <p><b>Data de criação: </b>{{ dataModal.split('-').reverse().join('/') }}</p>
+
+                <template #modal-footer={}>
+                    <div></div>
+                </template>
+            </b-modal>
         </div>
     </div>
 </template>
@@ -19,35 +38,90 @@
 <script>
     import Items from '@/config/products.json';
 
+    function filteredList(array, filter) {
+        return array.filter(item=> item.img === filter);
+    }
+    function sortedList(array, sort){
+        let arraySorted = [];
+        if(typeof array[0][sort] == 'number'){
+            arraySorted = array.sort((a, b)=> {
+                return a[sort] - b[sort]
+            });
+        }else if(typeof array[0][sort] == 'string' && new Date(array[0][sort]) != "Invalid Date"){
+            arraySorted = array.sort((a,b)=>{
+                return new Date(b[sort]) - new Date(a[sort])
+            });
+        }else{
+            arraySorted = array.sort((a,b)=>{
+                if(a[sort] < b[sort]){
+                    return -1;
+                }
+                if(a[sort] > b[sort]){
+                    return 1;
+                }
+                return 0;
+            });
+        }
+        return arraySorted;
+    }
+
     export default {
         name: 'Cards',
+    
         data(){
             return {
                 items: Items,
-                dataFilter: ''
+                dataFilter: '',
+                dataSort: '',
+                tituloModal: '',
+                textoModal: '',
+                iconeModal: '',
+                valorModal: '',
+                populariedadeModal: '',
+                dataModal: ''
             }
         },
         props: {
             filter: {
                 type: String,
                 default: ''
+            },
+            sort: {
+                type: String,
+                default: ''
             }
         },
         computed: {
-            filteredList() {
-                let returned = [];
-                if(this.dataFilter == '' || this.dataFilter == 'globe'){
-                    returned = Items;
-                }else{
-                    returned = Items.filter(item=> item.img === this.dataFilter);
+            showList(){
+                let returned = Items;
+                if(this.dataFilter != '' && this.dataFilter != 'globe'){
+                    returned = filteredList(returned, this.dataFilter)
                 }
-                return returned;
-            }
+                if(this.dataSort != 0){
+                    returned = sortedList(returned, this.dataSort)
+                }
+                return returned
+            },
         },
         watch: { 
             filter: function (newVal) {
                 this.dataFilter = newVal;
+            },
+            sort: function (newVal) {
+                this.dataSort = newVal;
             }
+        },
+        methods: {
+            describe(id){
+                const produto = Items.find(item=> item.id === id)
+
+                this.tituloModal = produto.title;
+                this.textoModal = produto.text;
+                this.iconeModal = produto.img;
+                this.valorModal = produto.value;
+                this.populariedadeModal = produto.popularity;
+                this.dataModal = produto.createdDate;
+            },
         }
     }
 </script>
@@ -147,6 +221,42 @@
                 .card.main {
                     margin-right: 0;
                 }
+            }
+        }
+    }
+
+    #modal-describe{
+        background: red;
+        .headerModal{
+            div{
+                display: flex;
+                align-items: center;
+                justify-content: flex-start !important;
+                svg{
+                    margin-right: 20px;
+                    width: 30px;
+                    height: 30px;
+                    *{
+                        fill: #f0690a;
+                    }
+                }
+                strong{
+                    font-size: 20px;
+                    font-weight: 400;
+                    text-transform: uppercase;
+                }
+            }
+        }
+        .modal-footer{
+            .btn-secondary{
+                background-color:#000;
+                opacity:0.5;
+                border-color:#000;
+                color:#f0690a;
+            }
+            button.btn-primary{
+                background-color:#f0690a !important;
+                border-color:#f0690a !important;
             }
         }
     }
