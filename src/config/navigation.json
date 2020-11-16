@@ -1,0 +1,42 @@
+[
+    {
+        "text": "Todos",
+        "icon": "globe"
+    },
+    {
+        "text": "Profissional",
+        "icon": "briefcase"
+    },
+    {
+        "text": "Reguladores",
+        "icon": "university"
+    },
+    {
+        "text": "Sócio Ambiental",
+        "icon": "tree"
+    },
+    {
+        "text": "Jurídico",
+        "icon": "gavel"
+    },
+    {
+        "text": "Listas Restritivas",
+        "icon": "ban"
+    },
+    {
+        "text": "Mídia / Internet",
+        "icon": "globe-americas"
+    },
+    {
+        "text": "Bens e Imóveis",
+        "icon": "gem"
+    },
+    {
+        "text": "Cadastro",
+        "icon": "male"
+    },
+    {
+        "text": "Financeiro",
+        "icon": "piggy-bank"
+    }
+]

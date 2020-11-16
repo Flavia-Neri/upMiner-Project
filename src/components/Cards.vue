@@ -1,6 +1,6 @@
 <template>
     <div class="cards">
-        <div v-for="item in items" :key="item.id">
+        <div v-for="item in filteredList" :key="item.id">
             <div class="card main" style="width: 18rem;" >
                 <div class="card-body cbody ">
                      <font-awesome-icon :icon="['fas',item.img]"/>
@@ -24,6 +24,29 @@
         data(){
             return {
                 items: Items,
+                dataFilter: ''
+            }
+        },
+        props: {
+            filter: {
+                type: String,
+                default: ''
+            }
+        },
+        computed: {
+            filteredList() {
+                let returned = [];
+                if(this.dataFilter == '' || this.dataFilter == 'globe'){
+                    returned = Items;
+                }else{
+                    returned = Items.filter(item=> item.img === this.dataFilter);
+                }
+                return returned;
+            }
+        },
+        watch: { 
+            filter: function (newVal) {
+                this.dataFilter = newVal;
             }
         }
     }
@@ -31,10 +54,10 @@
 
 <style lang="scss" scoped>
     .cards {
-        width: 1330px;
+        width: 90%;
         margin: 0 auto;
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         flex-wrap: wrap;
 
         .card.main {
@@ -43,7 +66,6 @@
             border: none;
             box-shadow: 0px 3px 18px 0px rgba(0, 0, 0, 0.06);
             transition: all 0.4s ease;
-            margin-right: 35px;
             margin-bottom: 55px;
 
             .cbody {
@@ -112,6 +134,19 @@
         >div:nth-of-type(4n){
             .card.main {
                 margin-right: 0;
+            }
+        }
+
+        @media screen and (min-width: 768px){
+            width: 1330px;
+            justify-content: flex-start;
+            .card.main{
+                margin-right: 35px;
+            }
+            >div:nth-of-type(4n){
+                .card.main {
+                    margin-right: 0;
+                }
             }
         }
     }

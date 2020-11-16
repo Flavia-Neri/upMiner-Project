@@ -21,9 +21,9 @@
                 </section>
             </div>
         </div>
-        <Nav />
+        <Nav v-bind:setFilter="setFilter"/>
         <Select />
-        <Cards />
+        <Cards v-bind:filter="filter"/>
     </main>
 </template>
 
@@ -43,109 +43,141 @@
             Nav,
             Select,
             Cards
+        },
+        data(){
+            return {
+                filter: ''
+            }
+        },
+        methods:{
+            setFilter(value){
+                this.filter = value;
+            }
         }
    }     
 </script>
 
 <style lang="scss">
-.banner {
-    width: 100%;
-    height: 300px;
-    padding: 0 !important;
-    border-bottom: 5px solid #f87c2a;
-    color: #231f1f;
-    background-size: cover;
-    background-position: center center;
-    display: flex;
-    align-items: center;
-
-    .content {
+    .banner {
         width: 100%;
-        max-width: 1195px;
-        margin: 0 auto;
+        height: 400px;
+        padding: 0 !important;
+        border-bottom: 5px solid #f87c2a;
+        color: #231f1f;
+        background-size: cover;
+        background-position: center center;
+        display: flex;
+        align-items: center;
 
-        section {
-            width: 600px;
+        .content {
+            width: 100%;
+            max-width: 1195px;
+            margin: 0 auto;
 
-            .titleMain {
-                width: 500px;
+            section {
+                width: 90%;
+                margin: 0 auto;
+
+                .titleMain {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-bottom: 30px;
+
+                    .logo {
+                        display: flex;
+                        height: 40px;
+                        margin: 20px;
+                        align-items: center;
+                    }
+                }
+            }
+
+            h1 {
+                font-size: 32px;
+                font-weight: 400;
+                margin:0;
+            }
+
+            p {
+                font-size: 19px;
+                font-weight: 300;
+                line-height: 24pt;
+            }
+
+            .infosBanner {
                 display: flex;
                 align-items: center;
 
-                .logo {
-                    display: flex;
-                    height: 40px;
-                    border-right: 1px solid #231f1f;
-                    padding-right: 20px;
-                    margin: 20px;
-                    align-items: center;
+                .infosBanner-text {
+                    font-size: 38px;
+
+                    span {
+                        font-size: 16px;
+                        font-weight: 400;
+                        margin-right: 3px;
+                    }
                 }
-            }
-        }
 
-        h1 {
-            font-size: 32px;
-            font-weight: 400;
-            margin:0;
-        }
-
-        p {
-            font-size: 19px;
-            font-weight: 300;
-            line-height: 24pt;
-        }
-
-        .infosBanner {
-            display: flex;
-            align-items: center;
-
-            .infosBanner-text {
-                font-size: 38px;
-
-                span {
+                .botao {
+                    width: 112px;
+                    height: 34px;
+                    border: none;
+                    border-radius: 5px;
+                    background-image: linear-gradient(51deg, #ff8e49, #f0690a, #ff8e49);
+                    background-size: 200% 100%;
+                    transition: 0.3s all;
                     font-size: 16px;
-                    font-weight: 400;
-                    margin-right: 3px;
-                }
-            }
+                    font-weight: bold;
+                    line-height: 1;
+                    margin-left: 20px;
 
-            .botao {
-                width: 112px;
-                height: 34px;
-                border: none;
-                border-radius: 5px;
-                background-image: linear-gradient(51deg, #ff8e49, #f0690a, #ff8e49);
-                background-size: 200% 100%;
-                transition: 0.3s all;
-                font-size: 16px;
-                font-weight: bold;
-                line-height: 1;
-                margin-left: 20px;
+                    &:hover {
+                        background-position: 100%;
+                    }
 
-                &:hover {
-                    background-position: 100%;
-                }
-
-                &:active,
-                &:focus {
-                    box-shadow: none !important;
+                    &:active,
+                    &:focus {
+                        box-shadow: none !important;
+                    }
                 }
             }
         }
-    }
 
-    &.main {
-        color: #fff;
+        &.main {
+            color: #fff;
+        }
 
-        .content {
-            section {
-                .titleMain {
-                    .logo {
-                        border-right: 1px solid #fff;
+        @media screen and (min-width: 768px){
+            height: 300px;
+            .content{
+                margin: 0;
+                section{
+                    width: 600px;
+                    .titleMain{
+                        width: 500px;
+                        flex-direction: row;
+                        margin: 0;
+
+                        .logo{
+                            padding-right: 20px;
+                            border-right: 1px solid #231f1f;
+                        }
+                    }
+                }
+            }
+            &.main {
+                .content {
+                    section {
+                        .titleMain {
+                            .logo {
+                                border-right: 1px solid #fff;
+                            }
+                        }
                     }
                 }
             }
         }
     }
-}
 </style>
